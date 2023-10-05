@@ -6,11 +6,13 @@ import HourlyForecast from "./WeatherContainer/HourlyForecast";
 import Styles from "./App.module.css";
 
 function App() {
+  
+
   return (
     <div>
       <Navbar />
       <div className={Styles.weatherContainer}>
-        <City />
+        <City/>
         <CurrentWeather />
         <DailyForecast />
         <HourlyForecast />
