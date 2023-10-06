@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Styles from "./City.module.css";
 
-const City = () => {
+const City = (props) => {
   const [timezone, setTimezone] = useState(null);
   const [cityName, setCityName] = useState("");
-  const city = "kolkata";
+  const city = props.city ? props.city : "kolkata";
   const apiKey = process.env.REACT_APP_API_KEY;
   useEffect(() => {
     const fetchData = async () => {
@@ -21,7 +21,7 @@ const City = () => {
     };
 
     fetchData();
-  }, []); // Empty dependency array to run once on mount
+  }, [city]); // Empty dependency array to run once on mount
 
   const calculateLocalTime = () => {
     if (timezone !== null) {

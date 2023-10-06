@@ -11,30 +11,45 @@
 }
 
 .searchBar {
-  display: flex;
-  flex: 4;
   align-items: center;
+  display: flex;
+  flex: 3;
   background-color: #d9d9d9;
   border-radius: 2.5rem;
-  padding: 0.5rem;
   margin-left: 1rem;
+  border: 1px solid;
 }
 
 .searchIcon {
   color: #000000;
   font-size: 1.5rem;
   margin-right: 0.5rem;
+  padding-left: 0.5rem;
 }
 
 .searchInput {
   display: flex;
-  flex: 4;
+  flex: 3;
   border: none;
   background: transparent;
   font-size: 1rem;
   width: 15rem; /* Adjust as needed */
   outline: none;
   color: #000000;
+  padding: 0.75rem;
+}
+/* Add this CSS to your Styles.css or equivalent stylesheet */
+
+.searchButton {
+  background-color: #4cbb17;
+  flex: 1;
+  color: #fff;
+  border: none;
+  border-radius: 0 2.5rem 2.5rem 0;
+  cursor: pointer;
+  margin: 0;
+  padding: 0.85rem;
+  font-size: 18px;
 }
 
 .locationContainer {
@@ -45,8 +60,9 @@
   background-color: #4cbb17;
   border-radius: 2.5rem;
   box-shadow: 0px 4px 40px 0px rgba(0, 0, 0, 0.25);
-  padding: 0.5rem;
+  padding: 0.75rem;
   margin-left: 1rem;
+  border: 1px solid;
 }
 .locationContainer:hover {
   cursor: pointer;

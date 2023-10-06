@@ -9,7 +9,7 @@
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
   transition: box-shadow 0.3s ease-in-out;
   width: 780px;
-  height: 330px;
+  height: 360px;
   color: #292929;
 }
 /* CSS to change the color of the image */
@@ -30,7 +30,7 @@ img {
 }
 
 .leftSection h2 {
-  font-size: 48px;
+  font-size: 45px;
   font-weight: bold;
   margin: 0;
   color: #292929;
@@ -93,7 +93,7 @@ img {
   padding: 20px;
 }
 .rightSection p {
-  font-size: 17px;
+  font-size: 16px;
 }
 /* Left content */
 .left {

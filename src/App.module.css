@@ -1,9 +1,12 @@
+.container {
+  font-family: "Montserrat", sans-serif;
+}
+
 .weatherContainer {
+  height: 80vh;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-evenly;
-  font-family: "Montserrat", sans-serif;
-  margin: 5rem 1rem;
   gap: 0.5rem;
 }

@@ -8,7 +8,7 @@ import windSpeedImage from "../assets/wind-speed.png";
 import VisibilityImage from "../assets/visibility.png";
 import Styles from "./CurrentWeather.module.css";
 
-const CurrentWeather = () => {
+const CurrentWeather = (props) => {
   const [weatherData, setWeatherData] = useState({
     temperature: "",
     feelsLike: "",
@@ -21,13 +21,15 @@ const CurrentWeather = () => {
     windSpeed: "",
     visibility: "",
   });
-  const city = "kolkata";
+  const city = props.city ? props.city : "kolkata";
   const apiKey = process.env.REACT_APP_API_KEY;
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`
+          `https://api.openweathermap.org/data/2.5/weather?q=${
+            props.city ? props.city : city
+          }&appid=${apiKey}&units=metric`
         );
         setWeatherData({
           temperature: response.data.main.temp,
@@ -41,15 +43,13 @@ const CurrentWeather = () => {
           windSpeed: response.data.wind.speed,
           visibility: response.data.visibility,
         });
-
-        console.log(weatherData);
       } catch (error) {
         console.error("Error:", error);
       }
     };
 
     fetchData();
-  }, []);
+  }, [city]);
   const formatUnixTimestamp = (unixTimestamp) => {
     const date = new Date(unixTimestamp * 1000); // Multiply by 1000 to convert from seconds to milliseconds
 
