@@ -1,9 +1,9 @@
 .weatherContainer {
   display: flex;
   flex-wrap: wrap;
-  /* align-items: center; */
-  justify-content: center;
-  flex: 1 2;
-  gap: 1.5rem;
+  align-items: center;
+  justify-content: space-evenly;
+  font-family: "Montserrat", sans-serif;
   margin: 5rem 1rem;
+  gap: 0.5rem;
 }

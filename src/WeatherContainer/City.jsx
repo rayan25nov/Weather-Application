@@ -15,7 +15,6 @@ const City = () => {
         );
         setTimezone(response.data.timezone);
         setCityName(response.data.name);
-        console.log(response.data);
       } catch (error) {
         console.error("Error:", error);
       }
@@ -36,13 +35,18 @@ const City = () => {
   };
 
   const localTime = calculateLocalTime();
-  if (localTime !== null) {
-    console.log("Local Time in Kolkata:", localTime);
-  }
   return (
     <div className={Styles.cityContainer}>
       <p>{cityName}</p>
-      <h1>{localTime !== null ? localTime.toLocaleTimeString() : null}</h1>
+      <h1>
+        {localTime !== null
+          ? localTime.toLocaleTimeString("en-US", {
+              hour: "2-digit",
+              minute: "2-digit",
+              hour12: true, // Use 12-hour format with AM/PM
+            })
+          : null}
+      </h1>
       <p>{localTime !== null ? localTime.toLocaleDateString() : null}</p>
     </div>
   );
