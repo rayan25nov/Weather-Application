@@ -6,12 +6,12 @@ const City = () => {
   const [timezone, setTimezone] = useState(null);
   const [cityName, setCityName] = useState("");
   const city = "kolkata";
-  const key = "33bd0feecf4efe92b32cc9fecffc8689";
+  const apiKey = process.env.REACT_APP_API_KEY;
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${key}&units=metric`
+          `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`
         );
         setTimezone(response.data.timezone);
         setCityName(response.data.name);

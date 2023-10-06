@@ -1,0 +1,128 @@
+/* Style the container */
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #d9d9d9;
+  border-radius: 30px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.3s ease-in-out;
+  width: 780px;
+  height: 330px;
+  color: #292929;
+}
+/* CSS to change the color of the image */
+img {
+  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(0%)
+    contrast(100%);
+}
+
+.container:hover {
+  box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Style the left section */
+.leftSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.leftSection h2 {
+  font-size: 48px;
+  font-weight: bold;
+  margin: 0;
+  color: #292929;
+}
+
+.leftSection p {
+  font-size: 20px;
+  color: #292929;
+}
+.sunriseContainer,
+.sunsetContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 1.5rem;
+}
+.sunrise,
+.sunset {
+  align-self: flex-end;
+}
+.leftSection img {
+  max-width: 50px;
+  height: auto;
+  margin-top: 10px;
+  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(0%)
+    contrast(100%);
+}
+
+/* Style the middle section */
+.middleSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.middleSection img {
+  width: 270px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.middleSection p {
+  margin: 0;
+  color: #292929;
+  text-align: center;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+/* Style the right section */
+/* Container for left and right content */
+.rightSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+.rightSection p {
+  font-size: 18px;
+}
+/* Left content */
+.left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1rem;
+}
+
+.left img {
+  max-width: 50px;
+  height: auto;
+  margin-bottom: 5px;
+}
+
+.left .firstPara,
+.right .firstPara {
+  margin-bottom: 3rem;
+}
+
+/* Right content */
+.right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.right img {
+  max-width: 50px;
+  height: auto;
+  margin-bottom: 5px;
+}
