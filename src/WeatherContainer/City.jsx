@@ -4,24 +4,24 @@ import Styles from "./City.module.css";
 
 const City = (props) => {
   const [timezone, setTimezone] = useState(null);
-  const [cityName, setCityName] = useState("");
-  const city = props.city ? props.city : "kolkata";
+  const city = props.city;
   const apiKey = process.env.REACT_APP_API_KEY;
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`
-        );
-        setTimezone(response.data.timezone);
-        setCityName(response.data.name);
-      } catch (error) {
-        console.error("Error:", error);
+      if (city) {
+        try {
+          const response = await axios.get(
+            `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`
+          );
+          setTimezone(response.data.timezone);
+        } catch (error) {
+          console.error("Error:", error);
+        }
       }
     };
 
     fetchData();
-  }, [city]); // Empty dependency array to run once on mount
+  }, [city]);
 
   const calculateLocalTime = () => {
     if (timezone !== null) {
@@ -35,21 +35,25 @@ const City = (props) => {
   };
 
   const localTime = calculateLocalTime();
-  return (
-    <div className={Styles.cityContainer}>
-      <p>{cityName}</p>
-      <h1>
-        {localTime !== null
-          ? localTime.toLocaleTimeString("en-US", {
-              hour: "2-digit",
-              minute: "2-digit",
-              hour12: true, // Use 12-hour format with AM/PM
-            })
-          : null}
-      </h1>
-      <p>{localTime !== null ? localTime.toLocaleDateString() : null}</p>
-    </div>
-  );
+  if (!timezone) {
+    return <p>Loading...</p>;
+  } else {
+    return (
+      <div className={Styles.cityContainer}>
+        <p>{city}</p>
+        <h1>
+          {localTime !== null
+            ? localTime.toLocaleTimeString("en-US", {
+                hour: "2-digit",
+                minute: "2-digit",
+                hour12: true, // Use 12-hour format with AM/PM
+              })
+            : null}
+        </h1>
+        <p>{localTime !== null ? localTime.toLocaleDateString() : null}</p>
+      </div>
+    );
+  }
 };
 
 export default City;
