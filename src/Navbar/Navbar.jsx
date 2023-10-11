@@ -44,6 +44,8 @@ const Navbar = (props) => {
         <input
           type="text"
           placeholder="Search for your preferred city..."
+          name="city name"
+          autocomplete="city name"
           className={Styles.searchInput}
           value={city}
           onChange={(e) => setCity(e.target.value)}

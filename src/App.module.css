@@ -3,10 +3,15 @@
 }
 
 .weatherContainer {
-  height: 80vh;
   display: flex;
   flex-wrap: wrap;
+  height: 90vh;
   align-items: center;
   justify-content: space-evenly;
   gap: 0.5rem;
+}
+@media (max-width: 1024px) {
+  .weatherContainer {
+    height: 100%;
+  }
 }

@@ -9,4 +9,8 @@ export default defineConfig({
   define: {
     "process.env": process.env, // Load all environment variables
   },
+  server: {
+    open: true, // Automatically open the browser when starting the development server
+    port: 3000, // Set the port to 3000
+  },
 });

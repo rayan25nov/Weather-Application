@@ -40,7 +40,7 @@ const City = (props) => {
   } else {
     return (
       <div className={Styles.cityContainer}>
-        <p>{city}</p>
+        <p>{city.toUpperCase()}</p>
         <h1>
           {localTime !== null
             ? localTime.toLocaleTimeString("en-US", {

@@ -3,13 +3,15 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
   padding: 20px;
+  margin: 0.5rem;
   background-color: #d9d9d9;
   border-radius: 30px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
   transition: box-shadow 0.3s ease-in-out;
-  width: 780px;
   min-height: 360px;
+  min-width: 780px;
   color: #292929;
 }
 /* CSS to change the color of the image */
@@ -125,4 +127,55 @@ img {
   max-width: 50px;
   height: auto;
   margin-bottom: 5px;
+}
+/* Adjustments for medium screens (max-width: 1024px) */
+@media (max-width: 1024px) {
+  .container {
+    min-width: 90%; /* Expand to full width of the parent container */
+    padding: 10px; /* Reduce padding */
+  }
+}
+
+/* Adjustments for small screens (max-width: 768px) */
+@media (max-width: 768px) {
+  .container {
+    min-width: 90%;
+    padding: 10px;
+    min-height: auto;
+    justify-content: center;
+  }
+
+  .leftSection h2 {
+    font-size: 36px;
+  }
+  .leftSection p {
+    font-size: 16px;
+  }
+
+  /* Adjust middle section font size for small screens */
+  .middleSection p {
+    font-size: 26px;
+  }
+  .middleSection img {
+    width: 200px; /* Reduce image size */
+    align-self: center;
+  }
+
+  /* Adjust right section font size for small screens */
+  .rightSection p {
+    font-size: 14px;
+  }
+  .left img,
+  .right img {
+    max-width: 40px; /* Reduce image size */
+  }
+  .left .firstPara,
+  .right .firstPara {
+    margin-bottom: 2rem;
+  }
+}
+
+/* Hover effect */
+.container:hover {
+  box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.3);
 }
