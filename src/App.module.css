@@ -3,6 +3,7 @@
   background: linear-gradient(113deg, #fff 10%, rgba(70, 97, 115, 0.5) 50%);
   background-repeat: no-repeat;
   min-height: 100vh;
+  height: 100%;
 }
 
 .container.dark {
@@ -15,11 +16,16 @@
 
 .weatherContainer {
   display: flex;
-  flex-wrap: wrap;
-  height: 90vh;
+  min-height: 90vh;
+  min-width: 100%;
   align-items: center;
   justify-content: space-evenly;
   gap: 0.5rem;
+}
+@media (max-width: 1200px) {
+  .weatherContainer {
+    flex-wrap: wrap;
+  }
 }
 @media (max-width: 1024px) {
   .weatherContainer {
