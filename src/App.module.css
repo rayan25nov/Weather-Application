@@ -1,5 +1,16 @@
 .container {
   font-family: "Montserrat", sans-serif;
+  background: linear-gradient(113deg, #fff 10%, rgba(70, 97, 115, 0.5) 50%);
+  background-repeat: no-repeat;
+  min-height: 100vh;
+}
+
+.container.dark {
+  background: linear-gradient(
+    113deg,
+    #383838 10%,
+    rgba(158, 158, 158, 0.2) 100%
+  );
 }
 
 .weatherContainer {

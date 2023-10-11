@@ -12,9 +12,9 @@ const Navbar = (props) => {
   const [city, setCity] = useState("");
   const apiKey = process.env.REACT_APP_LOCATION_KEY;
 
-  const sendCityNameToApp = () => {
-    // Call the function passed as a prop to send data to the parent
-    props.sendCityNameToApp(city);
+  const sendToApp = () => {
+    // Call the functions passed as props to send data to the parent
+    props.sendToApp(city); // Assuming you have a prop named "sendCityToApp"
     setCity("");
   };
 
@@ -26,7 +26,7 @@ const Navbar = (props) => {
         );
         const cityName = response.data.results[0].components.city;
         setCity(cityName);
-        sendCityNameToApp(cityName); // Send current location data to the parent
+        sendToApp(cityName); // Send current location data to the parent
       } catch (error) {
         console.error("Error:", error);
       }
@@ -34,8 +34,11 @@ const Navbar = (props) => {
   };
 
   return (
-    <div className={Styles.navbar}>
-      <ToggleButton />
+    <div className={`${Styles.navbar} ${props.isDarkMode ? Styles.dark : ""}`}>
+      <ToggleButton
+        isDarkMode={props.isDarkMode}
+        setIsDarkMode={props.setIsDarkMode}
+      />
       <div className={Styles.searchBar}>
         <FontAwesomeIcon
           icon={faMagnifyingGlass}
@@ -45,18 +48,17 @@ const Navbar = (props) => {
           type="text"
           placeholder="Search for your preferred city..."
           name="city name"
-          autocomplete="city name"
           className={Styles.searchInput}
           value={city}
           onChange={(e) => setCity(e.target.value)}
           onKeyDown={(e) => {
             if (e.key === "Enter") {
               e.preventDefault();
-              sendCityNameToApp();
+              sendToApp();
             }
           }}
         />
-        <button className={Styles.searchButton} onClick={sendCityNameToApp}>
+        <button className={Styles.searchButton} onClick={sendToApp}>
           Search
         </button>
       </div>

@@ -4,10 +4,10 @@
   justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
-  padding: 1rem;
+  padding: 1rem 2.5rem;
   font-size: 1.2rem;
   gap: 2.75rem;
-  margin: 0.5rem 2.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .searchBar {
@@ -16,17 +16,21 @@
   flex: 3;
   background-color: #d9d9d9;
   border-radius: 2.5rem;
-  margin:0 1rem;
+  margin: 0 1rem;
   border: 1px solid;
 }
-
+.navbar.dark.searchBar {
+  background-color: #444;
+}
 .searchIcon {
   color: #000000;
   font-size: 1.5rem;
   margin-right: 0.5rem;
   padding-left: 0.5rem;
 }
-
+.dark.searchIcon {
+  color: #fff;
+}
 .searchInput {
   display: flex;
   flex: 3;

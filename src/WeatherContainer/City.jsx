@@ -39,7 +39,9 @@ const City = (props) => {
     return <p>Loading...</p>;
   } else {
     return (
-      <div className={Styles.cityContainer}>
+      <div
+        className={`${Styles.cityContainer} ${props.isDarkMode ? Styles.dark : ""}`}
+      >
         <p>{city.toUpperCase()}</p>
         <h1>
           {localTime !== null

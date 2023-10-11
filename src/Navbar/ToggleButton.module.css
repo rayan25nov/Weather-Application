@@ -4,7 +4,9 @@
   align-items: center;
   margin-top: 20px;
 }
-
+.toggleButton.dark {
+  color: #fff; /* Light text color */
+}
 label {
   display: flex;
   align-items: center;

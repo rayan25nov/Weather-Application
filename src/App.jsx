@@ -7,11 +7,12 @@ import Styles from "./App.module.css";
 
 function App() {
   const [cityNameFromNavbar, SetCityNameFromNavbar] = useState("");
+  const [isDarkMode, setIsDarkMode] = useState(false);
   const [cityName, setCityName] = useState("");
   const apiKey = process.env.REACT_APP_LOCATION_KEY;
 
-  const receiveCityNameFromNavbar = (childData) => {
-    SetCityNameFromNavbar(childData);
+  const receiveFromNavbar = (childrenData) => {
+    SetCityNameFromNavbar(childrenData);
   };
 
   useEffect(() => {
@@ -33,15 +34,21 @@ function App() {
   }, []);
 
   return (
-    <div className={Styles.container}>
+    <div className={`${Styles.container} ${isDarkMode ? Styles.dark : ""}`}>
       <Navbar
-        sendCityNameToApp={receiveCityNameFromNavbar}
+        sendToApp={receiveFromNavbar}
+        isDarkMode={isDarkMode}
+        setIsDarkMode={setIsDarkMode}
         apiKey={apiKey} // Pass apiKey as a prop to Navbar component
       />
       <div className={Styles.weatherContainer}>
-        <City city={cityNameFromNavbar ? cityNameFromNavbar : cityName} />
+        <City
+          city={cityNameFromNavbar ? cityNameFromNavbar : cityName}
+          isDarkMode={isDarkMode}
+        />
         <CurrentWeather
           city={cityNameFromNavbar ? cityNameFromNavbar : cityName}
+          isDarkMode={isDarkMode}
         />
       </div>
     </div>

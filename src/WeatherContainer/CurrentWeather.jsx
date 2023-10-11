@@ -71,7 +71,9 @@ const CurrentWeather = (props) => {
     return <p>Loading...</p>;
   } else {
     return (
-      <div className={Styles.container}>
+      <div
+        className={`${Styles.container} ${props.isDarkMode ? Styles.dark : ""}`}
+      >
         <div className={Styles.leftSection}>
           <h2>{weatherData.temperature} &deg;C</h2>
           <p>Feels like: {weatherData.feelsLike} &deg;C</p>

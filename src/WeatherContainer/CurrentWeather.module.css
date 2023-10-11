@@ -14,10 +14,19 @@
   min-width: 780px;
   color: #292929;
 }
+
+.container.dark {
+  background-color: #444;
+  color: #fff;
+}
 /* CSS to change the color of the image */
 img {
   filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(0%)
     contrast(100%);
+}
+.container.dark img {
+  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%)
+    contrast(0%);
 }
 
 .container:hover {
@@ -35,12 +44,10 @@ img {
   font-size: 45px;
   font-weight: bold;
   margin: 0;
-  color: #292929;
 }
 
 .leftSection p {
   font-size: 20px;
-  color: #292929;
 }
 .sunriseContainer,
 .sunsetContainer {
@@ -78,7 +85,6 @@ img {
 
 .middleSection p {
   margin: 0;
-  color: #292929;
   text-align: center;
   font-size: 32px;
   font-style: normal;
