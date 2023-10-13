@@ -21,10 +21,7 @@ function App() {
         const response = await axios.get(
           `https://api.opencagedata.com/geocode/v1/json?q=${position.coords.latitude}+${position.coords.longitude}&key=${apiKey}`
         );
-        const cityName = response.data.results[0].components.city
-          .split(" ")
-          .slice(0, -1)
-          .join(" ");
+        const cityName = response.data.results[0].components.city;
         setCityName(cityName);
         SetCityNameFromNavbar(cityName);
       } catch (error) {
