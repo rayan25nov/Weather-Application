@@ -30,23 +30,25 @@ function App() {
     });
   }, []);
 
+  const modifiedCityName = cityNameFromNavbar ? cityNameFromNavbar : cityName;
+  const cityToSearch = modifiedCityName.toLowerCase().includes("city")
+    ? modifiedCityName.replace(" city", "")
+    : modifiedCityName;
+
   return (
     <div className={`${Styles.container} ${isDarkMode ? Styles.dark : ""}`}>
       <Navbar
         sendToApp={receiveFromNavbar}
         isDarkMode={isDarkMode}
         setIsDarkMode={setIsDarkMode}
-        apiKey={apiKey} // Pass apiKey as a prop to Navbar component
+        apiKey={apiKey}
       />
       <div className={Styles.weatherContainer}>
         <City
           city={cityNameFromNavbar ? cityNameFromNavbar : cityName}
           isDarkMode={isDarkMode}
         />
-        <CurrentWeather
-          city={cityNameFromNavbar ? cityNameFromNavbar : cityName}
-          isDarkMode={isDarkMode}
-        />
+        <CurrentWeather city={cityToSearch} isDarkMode={isDarkMode} />
       </div>
     </div>
   );
