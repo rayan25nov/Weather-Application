@@ -24,7 +24,10 @@ const Navbar = (props) => {
         const response = await axios.get(
           `https://api.opencagedata.com/geocode/v1/json?q=${position.coords.latitude}+${position.coords.longitude}&key=${apiKey}`
         );
-        const cityName = response.data.results[0].components.city;
+        const cityName = response.data.results[0].components.city
+          .split(" ")
+          .slice(0, -1)
+          .join(" ");
         setCity(cityName);
         sendToApp(cityName); // Send current location data to the parent
       } catch (error) {
