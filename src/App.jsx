@@ -45,7 +45,7 @@ function App() {
       />
       <div className={Styles.weatherContainer}>
         <City
-          city={cityNameFromNavbar ? cityNameFromNavbar : cityName}
+          city={cityNameFromNavbar ? cityNameFromNavbar : cityToSearch}
           isDarkMode={isDarkMode}
         />
         <CurrentWeather city={cityToSearch} isDarkMode={isDarkMode} />
