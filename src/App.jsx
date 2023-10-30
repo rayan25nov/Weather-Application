@@ -9,7 +9,7 @@ function App() {
   const [cityNameFromNavbar, SetCityNameFromNavbar] = useState("");
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [cityName, setCityName] = useState("");
-  const apiKey = process.env.REACT_APP_LOCATION_KEY;
+  const apiKey = process.env.REACT_APP_API_KEY;
 
   const receiveFromNavbar = (childrenData) => {
     SetCityNameFromNavbar(childrenData);
@@ -19,12 +19,10 @@ function App() {
     navigator.geolocation.getCurrentPosition(async (position) => {
       try {
         const response = await axios.get(
-          `https://api.opencagedata.com/geocode/v1/json?q=${position.coords.latitude}+${position.coords.longitude}&key=${apiKey}`
+          // `https://api.opencagedata.com/geocode/v1/json?q=${position.coords.latitude}+${position.coords.longitude}&key=${apiKey}`
+          `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`
         );
-        const cityName = response.data.results[0].components.city
-          .split(" ")
-          .slice(0, -1)
-          .join(" ");
+        const cityName = response.data.name;
         setCityName(cityName);
         SetCityNameFromNavbar(cityName);
       } catch (error) {

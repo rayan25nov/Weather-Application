@@ -10,7 +10,7 @@ import Styles from "./Navbar.module.css";
 
 const Navbar = (props) => {
   const [city, setCity] = useState("");
-  const apiKey = process.env.REACT_APP_LOCATION_KEY;
+  const apiKey = process.env.REACT_APP_API_KEY;
 
   const sendToApp = () => {
     // Call the functions passed as props to send data to the parent
@@ -22,12 +22,9 @@ const Navbar = (props) => {
     navigator.geolocation.getCurrentPosition(async (position) => {
       try {
         const response = await axios.get(
-          `https://api.opencagedata.com/geocode/v1/json?q=${position.coords.latitude}+${position.coords.longitude}&key=${apiKey}`
+          `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`
         );
-        const cityName = response.data.results[0].components.city
-          .split(" ")
-          .slice(0, -1)
-          .join(" ");
+        const cityName = response.data.name;
         setCity(cityName);
         sendToApp(cityName); // Send current location data to the parent
       } catch (error) {
