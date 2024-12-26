@@ -17,7 +17,14 @@ const Navbar = (props) => {
   const apiKey = process.env.REACT_APP_API_KEY;
 
   const sendToApp = (selectedCity) => {
-    if (!selectedCity || !cityNames.includes(selectedCity)) {
+    // make selected city first character to upper case because city names in cities-list are in title case
+
+    if (
+      !selectedCity ||
+      !cityNames.some(
+        (city) => city.toLowerCase() === selectedCity.toLowerCase()
+      )
+    ) {
       toast.error("City not found. Please select a valid city."); // Show error toast if city not found
       return;
     }
@@ -81,11 +88,11 @@ const Navbar = (props) => {
           onKeyDown={(e) => {
             if (e.key === "Enter") {
               e.preventDefault();
-              sendToApp();
+              sendToApp(city);
             }
           }}
         />
-        <button className={Styles.searchButton} onClick={() => sendToApp()}>
+        <button className={Styles.searchButton} onClick={() => sendToApp(city)}>
           Search
         </button>
         {filteredCities.length > 0 && (
