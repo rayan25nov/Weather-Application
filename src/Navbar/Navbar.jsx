@@ -1,3 +1,4 @@
+import cities from "cities-list";
 import React, { useState } from "react";
 import axios from "axios";
 import ToggleButton from "./ToggleButton";
@@ -7,15 +8,42 @@ import {
   faMagnifyingGlass,
 } from "@fortawesome/free-solid-svg-icons";
 import Styles from "./Navbar.module.css";
+import { toast, ToastContainer } from "react-toastify"; // Import Toastify
+import "react-toastify/dist/ReactToastify.css"; // Import Toastify styles
 
 const Navbar = (props) => {
   const [city, setCity] = useState("");
+  const [filteredCities, setFilteredCities] = useState([]); // State to hold filtered city names
   const apiKey = process.env.REACT_APP_API_KEY;
 
-  const sendToApp = () => {
-    // Call the functions passed as props to send data to the parent
-    props.sendToApp(city); // Assuming you have a prop named "sendCityToApp"
+  const sendToApp = (selectedCity) => {
+    if (!selectedCity || !cityNames.includes(selectedCity)) {
+      toast.error("City not found. Please select a valid city."); // Show error toast if city not found
+      return;
+    }
+    props.sendToApp(selectedCity || city);
     setCity("");
+    setFilteredCities([]); // Clear suggestions after selecting a city
+  };
+
+  const cityNames = Object.keys(cities); // Extract city names from cities-list
+
+  const handleCityInput = (e) => {
+    const userInput = e.target.value;
+    setCity(userInput);
+
+    if (userInput.trim() === "") {
+      setFilteredCities([]);
+      return;
+    }
+
+    // Filter city names based on user input
+    const suggestions = cityNames.filter((name) =>
+      name.toLowerCase().startsWith(userInput.toLowerCase())
+    );
+
+    // Limit the number of suggestions to display
+    setFilteredCities(suggestions.slice(0, 5));
   };
 
   const fetchCurrentLocationData = () => {
@@ -25,8 +53,7 @@ const Navbar = (props) => {
           `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`
         );
         const cityName = response.data.name;
-        setCity(cityName);
-        sendToApp(cityName); // Send current location data to the parent
+        sendToApp(cityName);
       } catch (error) {
         console.error("Error:", error);
       }
@@ -50,7 +77,7 @@ const Navbar = (props) => {
           name="city name"
           className={Styles.searchInput}
           value={city}
-          onChange={(e) => setCity(e.target.value)}
+          onChange={handleCityInput}
           onKeyDown={(e) => {
             if (e.key === "Enter") {
               e.preventDefault();
@@ -58,9 +85,22 @@ const Navbar = (props) => {
             }
           }}
         />
-        <button className={Styles.searchButton} onClick={sendToApp}>
+        <button className={Styles.searchButton} onClick={() => sendToApp()}>
           Search
         </button>
+        {filteredCities.length > 0 && (
+          <ul className={Styles.suggestionsList}>
+            {filteredCities.map((name, index) => (
+              <li
+                key={index}
+                onClick={() => sendToApp(name)}
+                className={Styles.suggestionItem}
+              >
+                {name}
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
       <div
         className={Styles.locationContainer}
@@ -72,6 +112,9 @@ const Navbar = (props) => {
         />
         <p className={Styles.locationText}>Current Location</p>
       </div>
+
+      {/* ToastContainer for displaying toasts */}
+      <ToastContainer />
     </div>
   );
 };

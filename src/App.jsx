@@ -13,6 +13,7 @@ function App() {
 
   const receiveFromNavbar = (childrenData) => {
     SetCityNameFromNavbar(childrenData);
+    console.log("Data received from Navbar:", childrenData);
   };
 
   useEffect(() => {
