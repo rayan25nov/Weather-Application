@@ -49,8 +49,7 @@ const Navbar = (props) => {
       name.toLowerCase().startsWith(userInput.toLowerCase())
     );
 
-    // Limit the number of suggestions to display
-    setFilteredCities(suggestions.slice(0, 5));
+    setFilteredCities(suggestions);
   };
 
   const fetchCurrentLocationData = () => {
